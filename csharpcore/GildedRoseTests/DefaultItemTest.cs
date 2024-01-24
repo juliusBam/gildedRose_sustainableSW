@@ -42,7 +42,7 @@ public class DefaultItemTest
         var items = this._getDefaultItems();
         GildedRose gildedRose = new GildedRose(items);
         
-        //when 10 days passed
+        //when 20 days passed
         for (int days = 0; days < 20; days++)
         {
             gildedRose.UpdateQuality();
@@ -50,6 +50,28 @@ public class DefaultItemTest
         
         //then
         Assert.AreEqual(items[0].SellIn, -10);
+        Assert.AreEqual(items[0].Quality, 0);
+
+    }
+    
+    //Test sinking of quality and sellIn after expiration date
+    //therefore quality degradation twice as fast
+    //but quality should stay at 0 --> no negative quality
+    [Test]
+    public void TestNoNegativeQuality()
+    {
+        //given
+        var items = this._getDefaultItems();
+        GildedRose gildedRose = new GildedRose(items);
+        
+        //when 10 days passed
+        for (int days = 0; days < 30; days++)
+        {
+            gildedRose.UpdateQuality();
+        }
+        
+        //then
+        Assert.AreEqual(items[0].SellIn, -30);
         Assert.AreEqual(items[0].Quality, 0);
 
     }
