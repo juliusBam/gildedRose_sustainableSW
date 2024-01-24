@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using GildedRoseKata;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
 using NUnit.Framework;
 
 namespace GildedRoseTests;
@@ -9,7 +10,7 @@ public class BackStagePassesTest
     
     private List<Item> _getBackstagePasses()
     {
-        return new List<Item> { new Item {Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 20, Quality = 40} };
+        return new List<Item> { new Item {Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 20, Quality = 20} };
     }
 
 
@@ -143,6 +144,7 @@ public class BackStagePassesTest
     {
         //given
         var items = this._getBackstagePasses();
+        items[0].Quality = 40;
         GildedRose gildedRose = new GildedRose(items);
 
         //when 19 days passed --> meaning the day before the concert --> quality should be at its highest
