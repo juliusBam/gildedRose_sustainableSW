@@ -83,7 +83,7 @@ public class BackStagePassesTest
         var items = this._getBackstagePasses();
         GildedRose gildedRose = new GildedRose(items);
 
-        //when 11 days passed
+        //when 15 days passed
         for (int days = 0; days < 15; days++)
         {
             gildedRose.UpdateQuality();
@@ -105,7 +105,7 @@ public class BackStagePassesTest
         var items = this._getBackstagePasses();
         GildedRose gildedRose = new GildedRose(items);
 
-        //when 11 days passed
+        //when 16 days passed
         for (int days = 0; days < 16; days++)
         {
             gildedRose.UpdateQuality();
@@ -114,6 +114,26 @@ public class BackStagePassesTest
         //then quality should have increased normally for 10 days and double for 5 days and then triple for 1 day
         Assert.AreEqual(43, items[0].Quality);
         Assert.AreEqual(4, items[0].SellIn);
+
+    }
+    
+    //The quality of the passes should drop to 0 after the concert (meaning SellIn = -1)
+    [Test]
+    public void TestQualityDropAfterConcert()
+    {
+        //given
+        var items = this._getBackstagePasses();
+        GildedRose gildedRose = new GildedRose(items);
+
+        //when 21 days passed --> meaning AFTER the concert
+        for (int days = 0; days < 21; days++)
+        {
+            gildedRose.UpdateQuality();
+        }
+        
+        //then quality should drop to 0
+        Assert.AreEqual(0, items[0].Quality);
+        Assert.AreEqual(-1, items[0].SellIn);
 
     }
     
