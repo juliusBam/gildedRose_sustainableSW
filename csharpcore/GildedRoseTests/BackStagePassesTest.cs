@@ -32,4 +32,25 @@ public class BackStagePassesTest
 
     }
     
+    //the increase of quality of backstage passes should be normal
+    //until the 10th day before the concert
+    [Test]
+    public void TestLimitNormalIncreaseOfQuality()
+    {
+        //given
+        var items = this._getBackstagePasses();
+        GildedRose gildedRose = new GildedRose(items);
+
+        //when 10 days passed
+        for (int days = 0; days < 10; days++)
+        {
+            gildedRose.UpdateQuality();
+        }
+        
+        //then quality should have increased normally
+        Assert.AreEqual(30, items[0].Quality);
+        Assert.AreEqual(10, items[0].SellIn);
+
+    }
+    
 }
