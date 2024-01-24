@@ -29,8 +29,8 @@ public class AgedBrieTest
         }
         
         //then
-        Assert.AreEqual(items[0].SellIn, 5);
-        Assert.AreEqual(items[0].Quality, 25);
+        Assert.AreEqual(5, items[0].SellIn);
+        Assert.AreEqual(25, items[0].Quality);
 
     }
     

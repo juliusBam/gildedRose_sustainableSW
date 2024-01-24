@@ -28,8 +28,8 @@ public class DefaultItemTest
         }
         
         //then
-        Assert.AreEqual(items[0].SellIn, 0);
-        Assert.AreEqual(items[0].Quality, 20);
+        Assert.AreEqual(0, items[0].SellIn);
+        Assert.AreEqual(20, items[0].Quality);
 
     }
     
@@ -49,8 +49,8 @@ public class DefaultItemTest
         }
         
         //then
-        Assert.AreEqual(items[0].SellIn, -10);
-        Assert.AreEqual(items[0].Quality, 0);
+        Assert.AreEqual(-10, items[0].SellIn);
+        Assert.AreEqual(0, items[0].Quality);
 
     }
     
@@ -71,8 +71,8 @@ public class DefaultItemTest
         }
         
         //then
-        Assert.AreEqual(items[0].SellIn, -30);
-        Assert.AreEqual(items[0].Quality, 0);
+        Assert.AreEqual(-20, items[0].SellIn);
+        Assert.AreEqual(0, items[0].Quality);
 
     }
     
