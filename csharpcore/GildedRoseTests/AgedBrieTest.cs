@@ -34,4 +34,27 @@ public class AgedBrieTest
 
     }
     
+    //Aged Brie should increase in quality with time but should
+    //not go over 50 quality
+    [Test]
+    public void TestQualityUpperLimit()
+    {
+        //given
+        var items = this._getAgedBrie();
+        GildedRose gildedRose = new GildedRose(items);
+        
+        //when 40 days passed
+        for (int days = 0; days < 40; days++)
+        {
+            
+            gildedRose.UpdateQuality();
+            
+        }
+        
+        //then
+        Assert.AreEqual(items[0].SellIn, -30);
+        Assert.AreEqual(items[0].Quality, 50);
+
+    }
+    
 }
