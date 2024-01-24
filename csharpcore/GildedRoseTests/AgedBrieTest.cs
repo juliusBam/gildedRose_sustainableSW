@@ -52,8 +52,31 @@ public class AgedBrieTest
         }
         
         //then
-        Assert.AreEqual(items[0].SellIn, -30);
-        Assert.AreEqual(items[0].Quality, 50);
+        Assert.AreEqual(-30, items[0].SellIn);
+        Assert.AreEqual(50, items[0].Quality);
+
+    }
+    
+    //Aged Brie quality increase should not be constant
+    //after the "expiration date" it increases in quality twice as fast
+    [Test]
+    public void TestQualityIncreaseNotConstant()
+    {
+        //given
+        var items = this._getAgedBrie();
+        GildedRose gildedRose = new GildedRose(items);
+        
+        //when 15 days passed
+        for (int days = 0; days < 15; days++)
+        {
+            
+            gildedRose.UpdateQuality();
+            
+        }
+        
+        //then
+        Assert.AreEqual(-5, items[0].SellIn);
+        Assert.AreEqual(40, items[0].Quality);
 
     }
     
