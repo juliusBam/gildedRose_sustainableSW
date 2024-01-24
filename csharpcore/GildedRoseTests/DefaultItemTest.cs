@@ -33,4 +33,25 @@ public class DefaultItemTest
 
     }
     
+    //Test sinking of quality and sellIn after expiration date
+    //therefore quality degradation twice as fast
+    [Test]
+    public void TestAcceleratedDecay()
+    {
+        //given
+        var items = this._getDefaultItems();
+        GildedRose gildedRose = new GildedRose(items);
+        
+        //when 10 days passed
+        for (int days = 0; days < 20; days++)
+        {
+            gildedRose.UpdateQuality();
+        }
+        
+        //then
+        Assert.AreEqual(items[0].SellIn, -10);
+        Assert.AreEqual(items[0].Quality, 0);
+
+    }
+    
 }
