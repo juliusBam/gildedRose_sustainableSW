@@ -1,23 +1,22 @@
-# Gilded Rose starting position in Csharp Core
+# Testing of Gilded Rose application
 
-## Build the project
+- Comberlato Bampi Julio Alexandre
 
-Use your normal build tools. 
+- David Catrina
 
-## Run the TextTest fixture from the Command-Line
+- Prüller Marie-Eleonore
 
-For e.g. 10 days:
+## Requirements
 
-```
-GildedRoseTests/bin/Debug/net7.0/GildedRoseTests 10
-```
+For the implementation of the unit tests following (https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/main/GildedRoseRequirements.md) functional requirements where used as a basis for the test cases.
 
-You should make sure the command shown above works when you execute it in a terminal before trying to use TextTest (see below). If your tooling has placed the executable somewhere else, you will need to adjust the path above.
+## Test strategy
 
+It was decided to create a test class for each item type having a "unique" behaviour. The implemented tests are aimed at testing edge cases and the items behaviour differing from the "default" items. A test suite for a "default" item was created as well, in order to test the default behaviour of items.
 
-## Run the TextTest approval test that comes with this project
+## Difficulties
 
-There are instructions in the [TextTest Readme](../texttests/README.md) for setting up TextTest. You will need to specify the GildedRoseTests executable and interpreter in [config.gr](../texttests/config.gr). Uncomment this line:
+During the implementation of the tests following difficulties were faced:
 
-    executable:${TEXTTEST_HOME}/csharpcore/GildedRoseTests/bin/Debug/net7.0/GildedRoseTests
-
+- Code duplication: the implemented unit tests are very similar, the usage of an advanced testing framework could avoid code duplication in the test structure.
+- Coverage of possible edge cases: the provided requirements hinted at some edge cases, however there is no way of knowing that other edge cases are covered as well.
