@@ -95,4 +95,26 @@ public class BackStagePassesTest
 
     }
     
+    //the increase of quality of backstage passes should be normal
+    //until the 10th day before the concert, afterwards it will be double until the fifth day before the concert
+    //when it will triple
+    [Test]
+    public void TestTripleIncreaseOfQuality()
+    {
+        //given
+        var items = this._getBackstagePasses();
+        GildedRose gildedRose = new GildedRose(items);
+
+        //when 11 days passed
+        for (int days = 0; days < 16; days++)
+        {
+            gildedRose.UpdateQuality();
+        }
+        
+        //then quality should have increased normally for 10 days and double for 5 days and then triple for 1 day
+        Assert.AreEqual(43, items[0].Quality);
+        Assert.AreEqual(4, items[0].SellIn);
+
+    }
+    
 }
