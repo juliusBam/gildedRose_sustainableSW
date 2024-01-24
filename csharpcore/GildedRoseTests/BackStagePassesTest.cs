@@ -9,7 +9,7 @@ public class BackStagePassesTest
     
     private List<Item> _getBackstagePasses()
     {
-        return new List<Item> { new Item {Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 20, Quality = 20} };
+        return new List<Item> { new Item {Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 20, Quality = 40} };
     }
 
 
@@ -134,6 +134,26 @@ public class BackStagePassesTest
         //then quality should drop to 0
         Assert.AreEqual(0, items[0].Quality);
         Assert.AreEqual(-1, items[0].SellIn);
+
+    }
+    
+    //The quality of the passes should not be allowed to be over 50
+    [Test]
+    public void TestQualityUpperLimit()
+    {
+        //given
+        var items = this._getBackstagePasses();
+        GildedRose gildedRose = new GildedRose(items);
+
+        //when 19 days passed --> meaning the day before the concert --> quality should be at its highest
+        for (int days = 0; days < 19; days++)
+        {
+            gildedRose.UpdateQuality();
+        }
+        
+        //then quality should drop to 0
+        Assert.AreEqual(50, items[0].Quality);
+        Assert.AreEqual(1, items[0].SellIn);
 
     }
     
